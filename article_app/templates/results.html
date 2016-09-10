@@ -1,0 +1,9 @@
+<!doctype html>
+<title>Search Results</title>
+{% if neighbors == 'INSUFFICIENT_SIZE' %}
+  <h1>Not enough data</h1>
+{% elif neighbors %}
+  <h1>neighbors are {{ neighbors }}!</h1>
+{% else %}
+  <h1>How did you get here!</h1>
+{% endif %}
