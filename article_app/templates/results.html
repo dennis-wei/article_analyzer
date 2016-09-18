@@ -1,9 +1,57 @@
 <!doctype html>
-<title>Search Results</title>
-{% if neighbors == 'INSUFFICIENT_SIZE' %}
-  <h1>Not enough data</h1>
-{% elif neighbors %}
-  <h1>neighbors are {{ neighbors }}!</h1>
-{% else %}
-  <h1>How did you get here!</h1>
-{% endif %}
+
+<style>
+  .card-wide.mdl-card {
+    width: 50vw;
+    padding-bottom: 25px
+  }
+</style>
+
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.light_blue-red.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+  </head>
+
+  <body>
+    <div class="center-container mdl-layout__container">
+      <h4>Here are your results!</h4>
+      <h5>Your article was: {{raw_url}}</h5>
+      {% if neighbors == 'INSUFFICIENT_SIZE' %}
+        <div class="card-wide mdl-card mdl-shadow--2dp">
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Not Enough Data</h2>
+          </div>
+          <div class="mdl-card__supporting-text">
+            Unfortunately, there is not enough data yet in our system.
+            Try again later!
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{ url_for('index') }}">
+              Return Home
+            </a>
+          </div>
+        </div>
+        <br><br>
+      {% elif neighbors %}
+        {% for n in neighbors %}
+          <div class="card-wide mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">{{ n }}</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              Later, a summery will go here
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <h3>How did you get here?</h3>
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{ url_for('index') }}">
+          Return Home
+        </a>
+      {% endif %}
+
+    </div>
+  </body>
+</html>

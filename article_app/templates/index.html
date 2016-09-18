@@ -1,9 +1,23 @@
 <!doctype html>
-<div>
-  <form role="form" method="POST" action="">
-    {{ form.hidden_tag() }}
-    <div>
-      {{ form.url(type="text") }}
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.light_blue-red.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+  </head>
+
+  <body>
+    <div class="mdl-layout__container">
+      <h3>Find Similar Articles</h3>
+      <p>Enter a link to a supported article, and we'll find some similar stuff!</p>
+      <form role="form" method="POST" action="">
+        {{ form.hidden_tag() }}
+        <div class="mdl-textfield mdl-js-textfield">
+          {{ form.url(class="mdl-textfield__input", type="text") }}
+          <label class="mdl-textfield__label">Enter URL</label>
+        </div>
+        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">SUBMIT</button>
+      </form>
     </div>
-  </form>
-</div>
+  </body>
+</html>

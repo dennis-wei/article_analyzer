@@ -15,7 +15,7 @@ app.config.from_pyfile('settings.py')
 with app.app_context():
     from scrapers.scrape import insert_single_article
     from neighbors.neighbors import get_neighbors
-    from services.database import test_url_rep, get_matrix_size
+    from services.database import test_url_rep, get_matrix_size, get_raw_url
     from vectorize.index import store_base_index
 
 db.init_app(app)
@@ -40,7 +40,8 @@ def results(url_rep=None):
         neighbors = 'INSUFFICIENT_SIZE'
     else:
         neighbors = get_neighbors(url_rep) if url_rep else None
-    return render_template('results.html', neighbors=neighbors)
+        raw_url = get_raw_url(url_rep) if url_rep else None
+    return render_template('results.html', raw_url=raw_url, neighbors=neighbors)
 
 with app.app_context():
     store_base_index()
