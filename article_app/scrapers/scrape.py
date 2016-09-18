@@ -7,6 +7,7 @@ from scrapers.wp import scrape_wp
 from services.utils import get_url_rep
 from services.database import test_url_rep
 from models.models import db, Meta, Content, Vector
+from vectorize.vectors import get_base_vector, get_recent_vector
 
 source_dict = {
     'nyt': scrape_nyt,

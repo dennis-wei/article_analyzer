@@ -16,3 +16,9 @@ create table article_vectors (
   base_vector int[],
   recent_vector int[]
 );
+
+create table word_index_jsons (
+  index_type text,
+  date_fetched date,
+  index json,
+)

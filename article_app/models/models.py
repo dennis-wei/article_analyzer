@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Date, String, Integer
-from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy.dialects.postgresql import ARRAY, JSON
+import datetime as dt
 
 db = SQLAlchemy()
 
@@ -49,5 +50,23 @@ class Vector(db.Model):
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
+
+    pass
+
+class IndexJSON(db.Model):
+    __tablename__ = 'word_index_jsons'
+
+    id = db.Column(db.Integer, primary_key = True)
+    index_type = db.Column(String)
+    date_fetched = db.Column(Date)
+    index = db.Column(JSON)
+
+    def __init__(self, index, index_type='recent'):
+        self.index_type = index_type
+        self.index = index
+        self.date_fetched = dt.date.today()
+
+    def __repr__(self):
+        return '<date_fetched {}>'.format(self.date_fetched)
 
     pass
