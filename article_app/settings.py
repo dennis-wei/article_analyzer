@@ -2,9 +2,6 @@ import os
 
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'local')
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-DATA_DIR = os.getenv('DATA_DIR', os.path.join(BASE_DIR, "data"))
-
 DATABASE_NAME = os.getenv('DATABASE_NAME', 'article_db')
 DATABASE_HOST = os.getenv('DATABASE_HOST', 'localhost')
 DATABASE_PORT = os.getenv('DATABASE_PORT', 5432)
@@ -28,6 +25,3 @@ SKIP_TOP = 10
 
 MIN_MATRIX_SIZE = 10
 K_NEAREST = 3
-
-BASE_INDEX_FILE = os.path.join(DATA_DIR, 'base.json')
-RECENT_INDEX_FILE = os.path.join(DATA_DIR, 'recent.json')
